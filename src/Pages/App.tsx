@@ -55,7 +55,7 @@ const App: React.FC = () => {
                     rows.map((col, j) => (
                         <div
                             className={`grid-item${grid[i][j] ? ' grid-item-pink': ''}`}
-                            key={`${i}-${j}`}
+                            key={`${i}-${j}`} // it's generally bad to do this, but in this situation this approach is suitable
                             onClick={() => {
                                 const newGrid = produce(grid, gridCopy => {
                                     gridCopy[i][j] = grid[i][j] ? 0 : 1;
