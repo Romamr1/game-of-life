@@ -15,7 +15,18 @@ export const generateEmptyGrid = ({ numRows, numCols }: generateGridInterface) =
     return rows;
 };
 
-export const newGrid = (grid: number[][]) => produce(grid, gridCopy => {
+export const generateRandomGrid = ({ numRows, numCols }: generateGridInterface) => {
+    const rows = [];
+    for (let i = 0; i < numRows; i++) {
+        rows.push(
+            Array.from(Array(numCols), () => (Math.random() > 0.7 ? 1 : 0))
+        );
+    }
+
+    return rows;
+};
+
+export const newGenerationOfGrid = (grid: number[][]) => produce(grid, gridCopy => {
     for (let i = 0; i < numRows; i++) {
         for (let j = 0; j < numCols; j++) {
             let neighbors = 0;

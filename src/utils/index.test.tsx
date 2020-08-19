@@ -1,4 +1,4 @@
-import { generateEmptyGrid, newGrid } from './index';
+import { generateEmptyGrid, newGenerationOfGrid } from './index';
 
 test('create grid', () => {
     const numRows = 50;
@@ -14,7 +14,7 @@ test('modify grid', () => {
     grid[5][4] = 1;
     grid[5][5] = 1;
     grid[5][6] = 1;
-    const modifiedGrid = newGrid(grid)
+    const modifiedGrid = newGenerationOfGrid(grid)
 
     expect(modifiedGrid[5][5]).toBe(1);
     expect(modifiedGrid[6][5]).toBe(1);
@@ -31,7 +31,7 @@ test('modify grid 2', () => {
     grid[11][10] = 1;
     grid[11][11] = 1;
     grid[11][12] = 1;
-    const modifiedGrid = newGrid(grid)
+    const modifiedGrid = newGenerationOfGrid(grid)
     expect(modifiedGrid[9][10]).toBe(1);
     expect(modifiedGrid[10][9]).toBe(1);
     expect(modifiedGrid[11][9]).toBe(1);

@@ -15,11 +15,11 @@ code {
 .grid-item {
   width: 20px;
   height: 20px;
-  border: solid 1px black;
+  border: solid 2px #cccccc;
 }
 
-.grid-item-pink {
-  background-color: pink;
+.grid-item-alive {
+  background-color: black;
 }
 
 .grid {

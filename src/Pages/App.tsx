@@ -2,7 +2,7 @@ import React, { useState, useCallback, useRef } from 'react';
 import produce from 'immer';
 
 import { numRows, numCols } from '../constants';
-import { generateEmptyGrid, newGrid } from '../utils';
+import { generateEmptyGrid, newGenerationOfGrid, generateRandomGrid } from '../utils';
 import Button from '../Components/Button';
 
 const App: React.FC = () => {
@@ -20,10 +20,12 @@ const App: React.FC = () => {
             return;
         }
 
-        setGrid((g) => newGrid(g));
+        setGrid((g) => newGenerationOfGrid(g));
 
         setTimeout(runSimulation, 1000);
     }, []);
+
+    const setRandomGrid = () => setGrid(generateRandomGrid({ numRows, numCols }));
 
     return (
         <>
@@ -36,6 +38,11 @@ const App: React.FC = () => {
                     }
                 }}
                 title={running ? "stop" : "start"}
+            />
+
+            <Button
+                title="random"
+                onClick={setRandomGrid}
             />
 
             <Button
@@ -54,7 +61,7 @@ const App: React.FC = () => {
                 {grid.map((rows, i) =>
                     rows.map((col, j) => (
                         <div
-                            className={`grid-item${grid[i][j] ? ' grid-item-pink': ''}`}
+                            className={`grid-item${grid[i][j] ? ' grid-item-alive': ''}`}
                             key={`${i}-${j}`} // it's generally bad to do this, but in this situation this approach is suitable
                             onClick={() => {
                                 const newGrid = produce(grid, gridCopy => {
